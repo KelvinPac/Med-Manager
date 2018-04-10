@@ -6,10 +6,6 @@
         android:icon="@drawable/ic_person_white"
         android:title="Profile" />
 
-    <item
-        android:id="@+id/navigation_my_meds"
-        android:icon="@drawable/ic_my_meds_white"
-        android:title="My Medicines" />
 
     <item
         android:id="@+id/navigation_reminders"
@@ -17,7 +13,7 @@
         android:title="Reminders" />
 
     <item
-        android:id="@+id/navigation_add_med"
+        android:id="@+id/navigation_monthly_meds"
         android:icon="@drawable/ic_date_range_white"
         android:title="Monthly Intake" />
 

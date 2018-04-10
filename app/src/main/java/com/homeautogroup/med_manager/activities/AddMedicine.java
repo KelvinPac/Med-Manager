@@ -98,7 +98,9 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
                 .child(userUID).child("My Medicines");
 
         DatabaseReference newMedicineRef = myMedsRef.push();
-        Medicine medicine = new Medicine(medicine_name,medicine_description,startDate,endDate);
+
+        Medicine medicine = new Medicine(medicine_name,medicine_description,
+                startDate,endDate,getMonth(),getYear());
         newMedicineRef.setValue(medicine).addOnSuccessListener(this,new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -131,4 +133,16 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
         startActivity(intent);
         finish();
     }
+
+    private int getYear(){
+        String yearArray[] = startDate.split("-");
+       return Integer.valueOf(yearArray[0]);
+    }
+
+    private int getMonth(){
+        String monthArray[] = startDate.split("-");
+        return Integer.valueOf(monthArray[1]);
+    }
+
+
 }

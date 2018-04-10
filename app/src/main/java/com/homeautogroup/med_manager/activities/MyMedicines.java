@@ -22,6 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.homeautogroup.med_manager.R;
 import com.homeautogroup.med_manager.adapters.RecyclerViewAdapter;
 import com.homeautogroup.med_manager.models.Medicine;
@@ -44,22 +45,13 @@ import android.support.design.widget.FloatingActionButton;
 public class MyMedicines extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-
-    // @BindView(R.id.recycler_view)
-    // RecyclerView recyclerView;
-
-    //@BindView(R.id.toolbar)
-    //Toolbar toolbar;
     private Toolbar toolbar;
-
-    //@BindView(R.id.fab)
-    //FloatingActionButton fab;
     private FloatingActionButton fab;
     private RecyclerViewAdapter mAdapter;
 
     private ArrayList<Medicine> modelList = new ArrayList<>();
 
-    private FirebaseAuth mAuth;
+    //private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private FirebaseUser mCurrentUser;
     @Override
@@ -203,11 +195,11 @@ public class MyMedicines extends AppCompatActivity {
         DatabaseReference myMedsRef = mDatabase.getReference().child("Users")
                 .child(mCurrentUser.getUid()).child("My Medicines");
 
-        //Query myMeds = myMedsRef.orderByKey();
+        Query myMeds = myMedsRef.orderByKey();
 
         initRecyclerView();
 
-        myMedsRef.addChildEventListener(new ChildEventListener() {
+        myMeds.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Toast.makeText(MyMedicines.this, dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
@@ -241,29 +233,17 @@ public class MyMedicines extends AppCompatActivity {
         });
     }
     private void initRecyclerView() {
-
         mAdapter = new RecyclerViewAdapter(MyMedicines.this, modelList);
-
         recyclerView.setHasFixedSize(true);
-
         // use a linear layout manager
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layoutManager);
-
-
         recyclerView.setAdapter(mAdapter);
-
-
         mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, Medicine model) {
-
                 //handle item click events here
                 Toast.makeText(MyMedicines.this, "Hey " + model.getMedicineName(), Toast.LENGTH_SHORT).show();
-
-
             }
         });
 
@@ -281,15 +261,9 @@ public class MyMedicines extends AppCompatActivity {
             // Called when a user swipes left or right on a ViewHolder
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-
                 // Retrieve the id of the task to delete
                 String stringId = (String) viewHolder.itemView.getTag();
-
-
-                // Build appropriate uri with String row id appended
-               // String stringId = Integer.toString(id);
                 deleteMedicine(stringId);
-               // mAdapter.notifyDataSetChanged();
                 Toast.makeText(MyMedicines.this, stringId, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);

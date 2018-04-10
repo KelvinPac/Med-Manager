@@ -109,12 +109,17 @@ public class MyProfileFragment extends Fragment {
 
 
 
-                    GlideApp.with(mContext)
-                            .load(user.getProfileImage())
-                            .centerCrop()
-                            .placeholder(R.drawable.default_avatar)
-                            .skipMemoryCache(false)
-                            .into(circleImageView);
+                    try {
+                        GlideApp.with(mContext)
+                                .load(user.getProfileImage())
+                                .centerCrop()
+                                .placeholder(R.drawable.default_avatar)
+                                .skipMemoryCache(false)
+                                .into(circleImageView);
+                    }catch (IllegalArgumentException e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
 

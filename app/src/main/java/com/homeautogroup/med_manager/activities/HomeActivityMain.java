@@ -27,12 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.homeautogroup.med_manager.R;
-import com.homeautogroup.med_manager.fragments.AddMedFragment;
-import com.homeautogroup.med_manager.fragments.MyMedsFragment;
+import com.homeautogroup.med_manager.fragments.MonthViewFragment;
 import com.homeautogroup.med_manager.fragments.MyProfileFragment;
 import com.homeautogroup.med_manager.fragments.RemindersFragment;
 import com.homeautogroup.med_manager.models.User;
 import com.homeautogroup.med_manager.utils.GlideApp;
+import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -97,8 +97,8 @@ public class HomeActivityMain extends AppCompatActivity {
                     loadFragment(fragment);
                     toolbar.setTitle("My Profile");
                     return true;
-                case R.id.navigation_add_med:
-                    fragment = new AddMedFragment();
+                case R.id.navigation_monthly_meds:
+                    fragment = new MonthViewFragment();
                     loadFragment(fragment);
                     toolbar.setTitle("Monthly Intake");
                     return true;
@@ -106,11 +106,6 @@ public class HomeActivityMain extends AppCompatActivity {
                    fragment = new RemindersFragment();
                    loadFragment(fragment);
                    toolbar.setTitle("Reminders");
-                    return true;
-                case R.id.navigation_my_meds:
-                    fragment = new MyMedsFragment();
-                    loadFragment(fragment);
-                    toolbar.setTitle("My Medicines");
                     return true;
             }
             return false;
@@ -235,4 +230,6 @@ public class HomeActivityMain extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+
 }

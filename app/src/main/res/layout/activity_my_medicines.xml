@@ -42,7 +42,7 @@
         app:fabSize="mini"
         app:layout_anchor="@+id/recycler_view"
         app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="com.homeautogroup.med_manager.activities.FABScrollBehaviour" />
+        />
 
 
 </android.support.design.widget.CoordinatorLayout>

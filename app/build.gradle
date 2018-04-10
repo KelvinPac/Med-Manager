@@ -45,6 +45,9 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.6.0' //Image cropper
     implementation 'com.karumi:dexter:4.2.0' //Dexter Permissions
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation('com.whiteelephant:monthandyearpicker:1.2.0') {
+        exclude group: "com.android.support"
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
