@@ -6,15 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,12 +24,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.homeautogroup.med_manager.R;
+import com.homeautogroup.med_manager.fragments.AlarmsFragment;
 import com.homeautogroup.med_manager.fragments.MonthViewFragment;
 import com.homeautogroup.med_manager.fragments.MyProfileFragment;
-import com.homeautogroup.med_manager.fragments.RemindersFragment;
 import com.homeautogroup.med_manager.models.User;
 import com.homeautogroup.med_manager.utils.GlideApp;
-import com.whiteelephant.monthpicker.MonthPickerDialog;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -103,7 +99,7 @@ public class HomeActivityMain extends AppCompatActivity {
                     toolbar.setTitle("Monthly Intake");
                     return true;
                 case R.id.navigation_reminders:
-                   fragment = new RemindersFragment();
+                    fragment = new AlarmsFragment();
                    loadFragment(fragment);
                    toolbar.setTitle("Reminders");
                     return true;
@@ -153,7 +149,7 @@ public class HomeActivityMain extends AppCompatActivity {
     }
 
     private void goToSignInActivity() {
-        Intent intent = new Intent(HomeActivityMain.this, MainActivity.class);
+        Intent intent = new Intent(HomeActivityMain.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

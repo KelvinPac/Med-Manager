@@ -1,8 +1,8 @@
 package com.homeautogroup.med_manager.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -14,7 +14,7 @@ import com.homeautogroup.med_manager.R;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
@@ -28,24 +28,24 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //updateUI(currentUser);
-        if (currentUser!=null){
+        if (currentUser != null) {
             goToHomeActivity();
             Toast.makeText(this, currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
-        }else {
+        } else {
             startUserSignIn();
         }
 
     }
 
     private void goToHomeActivity() {
-        Intent intent = new Intent(MainActivity.this, HomeActivityMain.class);
+        Intent intent = new Intent(SignInActivity.this, HomeActivityMain.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
     }
 
 
-    private void startUserSignIn(){
+    private void startUserSignIn() {
         // Choose authentication providers
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),

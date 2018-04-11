@@ -2,19 +2,16 @@ package com.homeautogroup.med_manager.fragments;
 
 
 import android.content.Context;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.homeautogroup.med_manager.R;
-import com.homeautogroup.med_manager.activities.MyMedicines;
 import com.homeautogroup.med_manager.adapters.RecyclerViewAdapter;
 import com.homeautogroup.med_manager.models.Medicine;
 import com.whiteelephant.monthpicker.MonthPickerDialog;
@@ -107,10 +103,13 @@ public class MonthViewFragment extends Fragment {
     }
 
     private void queryMedicationDates(int selectedMonth, int selectedYear) {
+        modelList.clear();
+        mAdapter.notifyDataSetChanged();
         DatabaseReference myMedsRef = mDatabase.getReference().child("Users")
                 .child(mCurrentUser.getUid()).child("My Medicines");
 
-        Query myMeds = myMedsRef.orderByChild("intakeMonth").equalTo(selectedMonth);
+        Query myMeds = myMedsRef.orderByChild("intakeMonth").equalTo(selectedMonth + 1)
+                .orderByChild("intakeYear").equalTo(selectedYear);
         myMeds.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

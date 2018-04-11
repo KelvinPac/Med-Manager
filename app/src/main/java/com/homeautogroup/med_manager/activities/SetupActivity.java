@@ -5,17 +5,15 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -223,7 +221,7 @@ public class SetupActivity extends AppCompatActivity {
                         mDatabaseUsers.child(user_id).setValue(user);
 
                         mProgress.dismiss();
-                        Intent main = new Intent(SetupActivity.this,MainActivity.class);
+                        Intent main = new Intent(SetupActivity.this, SignInActivity.class);
                         main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         finish();
@@ -289,7 +287,7 @@ public class SetupActivity extends AppCompatActivity {
     }
 
     private void goToSignInActivity() {
-        Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+        Intent intent = new Intent(SetupActivity.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();

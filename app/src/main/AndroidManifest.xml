@@ -5,6 +5,7 @@ package="com.homeautogroup.med_manager">
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 <application
     android:name=".MedManager"
@@ -14,7 +15,7 @@ package="com.homeautogroup.med_manager">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".activities.MainActivity">
+    <activity android:name=".activities.SignInActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
@@ -42,6 +43,19 @@ package="com.homeautogroup.med_manager">
         android:theme="@style/AppTheme.Template.Base"
         android:parentActivityName=".activities.HomeActivityMain">
     </activity>
+
+    <activity android:name=".activities.AddEditAlarmActivity" />
+
+    <activity
+        android:name=".activities.AlarmLandingPageActivity"
+        android:theme="@style/AlertLandingPageTheme" />
+
+    <service android:name=".service.LoadAlarmsService" />
+
+    <receiver android:name=".service.LoadAlarmsReceiver" />
+
+    <receiver android:name=".service.AlarmReceiver" />
+
 </application>
 
 

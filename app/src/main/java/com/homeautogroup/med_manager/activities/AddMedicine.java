@@ -1,11 +1,11 @@
 package com.homeautogroup.med_manager.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
@@ -128,7 +128,7 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
     }
 
     private void goToSignInActivity() {
-        Intent intent = new Intent(AddMedicine.this, MainActivity.class);
+        Intent intent = new Intent(AddMedicine.this, SignInActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
