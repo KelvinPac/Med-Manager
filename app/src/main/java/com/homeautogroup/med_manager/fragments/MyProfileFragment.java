@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.homeautogroup.med_manager.R;
 import com.homeautogroup.med_manager.activities.AddMedicine;
-import com.homeautogroup.med_manager.activities.HomeActivityMain;
 import com.homeautogroup.med_manager.activities.MyMedicines;
 import com.homeautogroup.med_manager.models.User;
 import com.homeautogroup.med_manager.utils.GlideApp;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,11 +36,10 @@ public class MyProfileFragment extends Fragment {
 
     private Context mContext;
     private FirebaseUser mCurrentUser;
-    private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
-    private CircleImageView circleImageView;
+    private ImageView circleImageView;
     private TextView userName,userEmail,userAge,userSex,userBMI,userWeight;
-    private Button btnAddMedicines,btnViewMyMedicines;
+
     public MyProfileFragment() {
         // Required empty public constructor
     }
@@ -53,7 +50,7 @@ public class MyProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mContext = container.getContext();
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance();
 
@@ -66,8 +63,8 @@ public class MyProfileFragment extends Fragment {
         userSex = view.findViewById(R.id.text_view_user_sex);
         userBMI = view.findViewById(R.id.text_view_user_bmi);
         userWeight = view.findViewById(R.id.text_view_user_weight);
-        btnAddMedicines = view.findViewById(R.id.btn_add_medicines);
-        btnViewMyMedicines = view.findViewById(R.id.btn_view_medicines);
+        Button btnAddMedicines = view.findViewById(R.id.btn_add_medicines);
+        Button btnViewMyMedicines = view.findViewById(R.id.btn_view_medicines);
 
 
         btnAddMedicines.setOnClickListener(new View.OnClickListener() {
@@ -100,8 +97,8 @@ public class MyProfileFragment extends Fragment {
                     User user = dataSnapshot.getValue(User.class);
 
                     assert user != null;
-                    userName.setText(user.getUserName());
-                    userEmail.setText(mCurrentUser.getEmail());
+                    userName.setText("Name: " + user.getUserName());
+                    userEmail.setText("Email: " + mCurrentUser.getEmail());
                     userAge.setText("Age: "+ String.valueOf(user.getUserAge())+" Years");
                     userSex.setText("Sex: "+user.getUserSex());
                     userBMI.setText("BMI: To CALC");

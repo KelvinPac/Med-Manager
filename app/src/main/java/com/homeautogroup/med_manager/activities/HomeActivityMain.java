@@ -34,52 +34,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivityMain extends AppCompatActivity {
 
-    private TextView mTextMessage;
     private FirebaseUser mCurrentUser;
     private FirebaseDatabase mDatabase;
     private Toolbar toolbar;
-    //private View mNavigationView;
     private CircleImageView profileImage;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_main);
-
-        //toolbar = getSupportActionBar();
-        toolbar = (Toolbar)findViewById(R.id.toolbar_main);
-       // toolbar.setLogo(imageDrawable);
-       // toolbar.setTitle(title);
-        toolbar.setTitle("Med Manager");
-        setSupportActionBar(toolbar);
-
-        //LayoutInflater mInflater = LayoutInflater.from(this);
-        //View mCustomView = mInflater.inflate(R.layout.actionbar_custom_layout, null);
-        //toolbar.setCustomView(mCustomView);
-        //toolbar.setDisplayShowCustomEnabled(true);
-        View mCustomView =  toolbar.getRootView();
-
-        profileImage = mCustomView.findViewById(R.id.profile_image);
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mCurrentUser = mAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance();
-//        mDatabase.setPersistenceEnabled(true);
-
-        if(mCurrentUser==null){
-            goToSignInActivity();
-        }
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        checkUserAccount();
-
-        // load the store fragment by default
-        toolbar.setTitle("Med Manager");
-        loadFragment(new MyProfileFragment());
-    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -96,17 +54,48 @@ public class HomeActivityMain extends AppCompatActivity {
                 case R.id.navigation_monthly_meds:
                     fragment = new MonthViewFragment();
                     loadFragment(fragment);
-                    toolbar.setTitle("Monthly Intake");
+                    toolbar.setTitle("My Monthly Intake");
                     return true;
                 case R.id.navigation_reminders:
                     fragment = new AlarmsFragment();
                    loadFragment(fragment);
-                   toolbar.setTitle("Reminders");
+                    toolbar.setTitle("My Reminders");
                     return true;
             }
             return false;
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home_main);
+
+        toolbar = findViewById(R.id.toolbar_main);
+        toolbar.setTitle("Med Manager");
+        setSupportActionBar(toolbar);
+
+        View mCustomView = toolbar.getRootView();
+
+        profileImage = mCustomView.findViewById(R.id.profile_image);
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mCurrentUser = mAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance();
+
+        if (mCurrentUser == null) {
+            goToSignInActivity();
+        }
+
+        TextView mTextMessage = findViewById(R.id.message);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        checkUserAccount();
+
+        // load the store fragment by default
+        toolbar.setTitle("Med Manager");
+        loadFragment(new MyProfileFragment());
+    }
 
 
     @Override
@@ -223,7 +212,7 @@ public class HomeActivityMain extends AppCompatActivity {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
-        transaction.addToBackStack(null);
+        // transaction.addToBackStack(null);
         transaction.commit();
     }
 

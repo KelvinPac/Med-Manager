@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_setup"
     android:layout_width="match_parent"
@@ -73,7 +72,8 @@
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Weight (KG)" />
+                android:hint="Weight (KG)"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -87,7 +87,8 @@
                 android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Height (CM)" />
+                android:hint="Height (CM)"
+                tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
@@ -104,14 +105,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Male" />
+            android:text="Male"
+            tools:ignore="HardcodedText" />
 
         <RadioButton
             android:id="@+id/radioButtonFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Female" />
+            android:text="Female"
+            tools:ignore="HardcodedText" />
     </RadioGroup>
 
     <Button
@@ -123,5 +126,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Update Account" />
+        android:text="Update Account"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

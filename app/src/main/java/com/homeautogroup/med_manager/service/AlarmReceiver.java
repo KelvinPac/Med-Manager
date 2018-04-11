@@ -20,6 +20,7 @@ import com.homeautogroup.med_manager.utils.AlarmUtils;
 
 import java.util.Calendar;
 
+@SuppressWarnings("SpellCheckingInspection")
 public final class AlarmReceiver extends BroadcastReceiver {
 
     private static final String ALARM_EXTRA = "alarm_extra";
@@ -137,6 +138,7 @@ public final class AlarmReceiver extends BroadcastReceiver {
 
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -156,7 +158,7 @@ public final class AlarmReceiver extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.ic_alarm_white_24dp);
         builder.setColor(ContextCompat.getColor(context, R.color.accent));
         builder.setContentTitle(context.getString(R.string.app_name));
-        builder.setContentText(alarm.getLabel());
+        builder.setContentText("Time to take " + alarm.getLabel());
         builder.setTicker(alarm.getLabel());
         builder.setVibrate(new long[]{1000, 500, 1000, 500, 1000, 500});
         builder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));

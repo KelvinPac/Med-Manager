@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,6 @@ public class MonthViewFragment extends Fragment {
 
 
     private static final String TAG = MonthViewFragment.class.getSimpleName();
-    private Button mBtnSelectMonth;
     private Context mContext;
     private FirebaseDatabase mDatabase;
     private FirebaseUser mCurrentUser;
@@ -60,9 +58,9 @@ public class MonthViewFragment extends Fragment {
         mCurrentUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance();
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView = view.findViewById(R.id.recycler_view);
         mContext = view.getContext();
-        mBtnSelectMonth = view.findViewById(R.id.btn_select_month_year);
+        Button mBtnSelectMonth = view.findViewById(R.id.btn_select_month_year);
         initRecyclerView();
         mBtnSelectMonth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +77,8 @@ public class MonthViewFragment extends Fragment {
         MonthPickerDialog.Builder builder = new MonthPickerDialog.Builder(mContext, new MonthPickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(int selectedMonth, int selectedYear) {
-                Log.d(TAG, "selectedMonth : " + selectedMonth + " selectedYear : " + selectedYear);
-                Toast.makeText(mContext, "Date set with month " + selectedMonth + " year " + selectedYear, Toast.LENGTH_SHORT).show();
+                // Log.d(TAG, "selectedMonth : " + selectedMonth + " selectedYear : " + selectedYear);
+                //Toast.makeText(mContext, "Date set with month " + selectedMonth + " year " + selectedYear, Toast.LENGTH_SHORT).show();
                 queryMedicationDates(selectedMonth,selectedYear);
             }
         }, 2018, 6);
@@ -96,7 +94,7 @@ public class MonthViewFragment extends Fragment {
                 // .setMaxMonth(Calendar.OCTOBER)
                 // .setYearRange(1890, 1890)
                 // .setMonthAndYearRange(Calendar.FEBRUARY, Calendar.OCTOBER, 1890, 1890)
-                //.showMonthOnly()
+                .showMonthOnly()
                 // .showYearOnly()
                 .build()
                 .show();
@@ -108,13 +106,12 @@ public class MonthViewFragment extends Fragment {
         DatabaseReference myMedsRef = mDatabase.getReference().child("Users")
                 .child(mCurrentUser.getUid()).child("My Medicines");
 
-        Query myMeds = myMedsRef.orderByChild("intakeMonth").equalTo(selectedMonth + 1)
-                .orderByChild("intakeYear").equalTo(selectedYear);
+        Query myMeds = myMedsRef.orderByChild("intakeMonth").equalTo(selectedMonth + 1);
         myMeds.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                   Toast.makeText(mContext, postSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(mContext, postSnapshot.getKey(), Toast.LENGTH_SHORT).show();
                     Medicine medicine = postSnapshot.getValue(Medicine.class).withUniqueId(postSnapshot.getKey());
                     modelList.add(medicine);
                     mAdapter.notifyDataSetChanged();
@@ -136,13 +133,13 @@ public class MonthViewFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+        /*mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, Medicine model) {
                 Toast.makeText(mContext, "Hey " + model.getMedicineName(), Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
     }
 }
 

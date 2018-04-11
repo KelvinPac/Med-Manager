@@ -43,7 +43,7 @@ public final class AlarmsFragment extends Fragment
 
         final View v = inflater.inflate(R.layout.fragment_add_alarms, container, false);
 
-        final EmptyRecyclerView rv = (EmptyRecyclerView) v.findViewById(R.id.recycler);
+        final EmptyRecyclerView rv = v.findViewById(R.id.recycler);
         mAdapter = new AlarmsAdapter();
         rv.setEmptyView(v.findViewById(R.id.empty_view));
         rv.setAdapter(mAdapter);
@@ -51,7 +51,7 @@ public final class AlarmsFragment extends Fragment
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        final FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        final FloatingActionButton fab = v.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

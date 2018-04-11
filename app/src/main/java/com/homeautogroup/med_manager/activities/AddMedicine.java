@@ -1,5 +1,6 @@
 package com.homeautogroup.med_manager.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -115,12 +116,14 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onStartDateSelected(String date) {
         startDate = date;
         mStartDateTextView.setText("Start Date Is: "+date);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onEndDateSelected(String date) {
         endDate = date;

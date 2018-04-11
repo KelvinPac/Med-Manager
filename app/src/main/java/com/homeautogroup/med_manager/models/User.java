@@ -9,6 +9,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
  * +254705419309
  */
 
+@SuppressWarnings("unused")
 @IgnoreExtraProperties
 public class User {
 

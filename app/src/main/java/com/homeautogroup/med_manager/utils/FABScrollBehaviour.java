@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
+@SuppressWarnings("deprecation")
 public class FABScrollBehaviour extends CoordinatorLayout.Behavior<FloatingActionButton> {
     public FABScrollBehaviour(Context context, AttributeSet attrs) {
         super();

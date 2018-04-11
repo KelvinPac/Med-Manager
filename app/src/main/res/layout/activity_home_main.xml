@@ -22,10 +22,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile_image"
         android:padding="5dp"
-        android:layout_width="10mm"
-        android:layout_height="10mm"
-        android:layout_gravity="right"
-        android:src="@drawable/default_avatar"/>
+        android:layout_width="9mm"
+        android:layout_height="9mm"
+        android:layout_gravity="end"
+        android:src="@drawable/default_avatar"
+        tools:ignore="InOrMmUsage" />
     </android.support.v7.widget.Toolbar>
 
 
@@ -46,9 +47,10 @@
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
         android:foreground="?attr/selectableItemBackground"
-        app:itemBackground="@color/bgBottomNavigation"
+        android:layout_alignParentLeft="true"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
+        app:itemBackground="@color/colorPrimary"
         app:menu="@menu/navigation" />
 
 </RelativeLayout>

@@ -8,10 +8,14 @@
     tools:context=".fragments.MonthViewFragment">
 
     <Button
+        android:layout_height="40dp"
+        android:background="@drawable/button_bg"
         android:id="@+id/btn_select_month_year"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Month to view medication" />
+        android:text="Select Month to view medication"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        tools:ignore="HardcodedText" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/btn_select_month_year"

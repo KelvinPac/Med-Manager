@@ -14,16 +14,16 @@ import com.homeautogroup.med_manager.R;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings({"deprecation", "unused"})
 public class SignInActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();

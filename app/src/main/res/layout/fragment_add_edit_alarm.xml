@@ -43,9 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
-            android:text="@string/label"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            tools:text="Label" />
+            android:text="Select Medicine Name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <View
             android:layout_width="match_parent"
@@ -53,18 +52,15 @@
             android:layout_marginBottom="@dimen/list_padding_vertical_small"
             android:background="@drawable/divider" />
 
-        <EditText
-            android:id="@+id/edit_alarm_label"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/my_medicines_spinner"
+            style="@style/AppTheme.FilterSpinner"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:hint="@string/add_label_hint"
-            android:inputType="textCapWords"
-            android:maxLength="15"
-            android:textColor="@color/secondary_text"
-            android:textStyle="italic" />
+            android:layout_width="match_parent"
+            android:layout_margin="8dp" />
 
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/list_padding_vertical_small"

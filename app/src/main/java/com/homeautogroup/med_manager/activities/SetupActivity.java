@@ -1,6 +1,7 @@
 package com.homeautogroup.med_manager.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -51,13 +52,10 @@ public class SetupActivity extends AppCompatActivity {
 
     private static final int GALLERY_REQUEST_CODE =55;
     private CircleImageView mSetupImageButton;
-   // private EditText mSetupNameField;
-    private Button mSetupButton;
     private  Uri mImageUri =null;
     private boolean isProfilePicChanged;
 
     private DatabaseReference mDatabaseUsers;
-    private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
     private StorageReference mStorageImage;
     private ProgressDialog mProgress;
@@ -71,6 +69,8 @@ public class SetupActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private RadioButton maleRadioButton,femaleRadioButton;
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,12 +87,12 @@ public class SetupActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        mSetupButton = (Button)findViewById(R.id.setupFinishButton);
-        mSetupImageButton = (CircleImageView) findViewById(R.id.setupImageButton);
+        Button mSetupButton = findViewById(R.id.setupFinishButton);
+        mSetupImageButton = findViewById(R.id.setupImageButton);
         mSetupNameField = findViewById(R.id.setupNameField);
 
-       // mInputLayoutAge = findViewById(R.id.input_layout_age);
-       // mInputLayoutWeight = findViewById(R.id.input_layout_weight);
+        // mInputLayoutAge = findViewById(R.id.input_layout_age);
+        // mInputLayoutWeight = findViewById(R.id.input_layout_weight);
         mInputAge = findViewById(R.id.input_editText_age);
         mInputWeight = findViewById(R.id.input_editText_weight);
         radioGroup = findViewById(R.id.radio_group_sex);
@@ -102,7 +102,7 @@ public class SetupActivity extends AppCompatActivity {
 
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mStorageImage = FirebaseStorage.getInstance().getReference().child("ProfileImages");
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
 
         if (mCurrentUser==null){
@@ -266,7 +266,7 @@ public class SetupActivity extends AppCompatActivity {
             CropImage.activity(imageUri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                    // .setCropShape(CropImageView.CropShape.OVAL)
-                    .setRequestedSize(150,150)
+                    .setRequestedSize(300, 300)
                     .setAspectRatio(1,1)
                     .start(this);
 

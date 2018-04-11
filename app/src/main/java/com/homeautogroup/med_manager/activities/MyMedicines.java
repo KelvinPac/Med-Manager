@@ -1,17 +1,23 @@
 package com.homeautogroup.med_manager.activities;
 
+import android.app.SearchManager;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
 import android.os.Bundle;
-
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.view.Menu;
 import android.view.View;
-
-import java.util.ArrayList;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,26 +33,14 @@ import com.homeautogroup.med_manager.R;
 import com.homeautogroup.med_manager.adapters.RecyclerViewAdapter;
 import com.homeautogroup.med_manager.models.Medicine;
 
-import android.widget.Toast;
-import android.support.v7.widget.Toolbar;
-
-import android.view.Menu;
-import android.support.v7.widget.SearchView;
-import android.support.v4.view.MenuItemCompat;
-import android.app.SearchManager;
-import android.widget.EditText;
-import android.graphics.Color;
-import android.text.InputFilter;
-import android.text.Spanned;
-
-import android.support.design.widget.FloatingActionButton;
+import java.util.ArrayList;
 
 
+@SuppressWarnings({"deprecation", "SpellCheckingInspection"})
 public class MyMedicines extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
     private RecyclerViewAdapter mAdapter;
 
     private ArrayList<Medicine> modelList = new ArrayList<>();
@@ -68,14 +62,14 @@ public class MyMedicines extends AppCompatActivity {
         initToolbar("My Medicines");
         //setAdapter();
 
-        fetchData2();
+        fetchMyMedicinesFromDb();
 
     }
 
     private void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        toolbar = findViewById(R.id.toolbar);
+        recyclerView = findViewById(R.id.recycler_view);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +97,11 @@ public class MyMedicines extends AppCompatActivity {
         final SearchView searchView = (SearchView) MenuItemCompat
                 .getActionView(menu.findItem(R.id.action_search));
 
-        SearchManager searchManager = (SearchManager) this.getSystemService(this.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) this.getSystemService(SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(this.getComponentName()));
 
         //changing edittext color
-        EditText searchEdit = ((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text));
+        EditText searchEdit = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchEdit.setTextColor(Color.WHITE);
         searchEdit.setHintTextColor(Color.WHITE);
         searchEdit.setBackgroundColor(Color.TRANSPARENT);
@@ -143,10 +137,10 @@ public class MyMedicines extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ArrayList<Medicine> filterList = new ArrayList<Medicine>();
+                ArrayList<Medicine> filterList = new ArrayList<>();
                 if (s.length() > 0) {
                     for (int i = 0; i < modelList.size(); i++) {
-                        if (modelList.get(i).getMedicineName().toLowerCase().contains(s.toString().toLowerCase())) {
+                        if (modelList.get(i).getMedicineName().toLowerCase().contains(s.toLowerCase())) {
                             filterList.add(modelList.get(i));
                             mAdapter.updateList(filterList);
                         }
@@ -164,34 +158,7 @@ public class MyMedicines extends AppCompatActivity {
     }
 
 
-
-   /* private void fetchMyMedicinesFromDb(){
-        DatabaseReference myMedsRef = mDatabase.getReference().child("Users")
-                .child(mCurrentUser.getUid()).child("My Medicines");
-
-        Query myMeds = myMedsRef.orderByKey();
-        myMeds.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-
-                    Toast.makeText(MyMedicines.this, postSnapshot.getKey(), Toast.LENGTH_SHORT).show();
-                    Medicine medicine = postSnapshot.getValue(Medicine.class).withUniqueId(postSnapshot.getKey());
-                    modelList.add(medicine);
-                   // modelList.get(4).
-                }
-
-                initRecyclerView();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MyMedicines.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
-
-    private void fetchData2(){
+    private void fetchMyMedicinesFromDb() {
         DatabaseReference myMedsRef = mDatabase.getReference().child("Users")
                 .child(mCurrentUser.getUid()).child("My Medicines");
 
@@ -202,7 +169,7 @@ public class MyMedicines extends AppCompatActivity {
         myMeds.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Toast.makeText(MyMedicines.this, dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MyMedicines.this, dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
                 Medicine medicine = dataSnapshot.getValue(Medicine.class).withUniqueId(dataSnapshot.getKey());
                 modelList.add(medicine);
                 mAdapter.notifyDataSetChanged();
@@ -239,13 +206,13 @@ public class MyMedicines extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+       /* mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, Medicine model) {
                 //handle item click events here
                 Toast.makeText(MyMedicines.this, "Hey " + model.getMedicineName(), Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
          /*
          Add a touch helper to the RecyclerView to recognize when a user swipes to delete an item.
@@ -264,7 +231,7 @@ public class MyMedicines extends AppCompatActivity {
                 // Retrieve the id of the task to delete
                 String stringId = (String) viewHolder.itemView.getTag();
                 deleteMedicine(stringId);
-                Toast.makeText(MyMedicines.this, stringId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MyMedicines.this, stringId, Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
     }
@@ -281,4 +248,13 @@ public class MyMedicines extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent goToHomeActivity = new Intent(MyMedicines.this, HomeActivityMain.class);
+        goToHomeActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(goToHomeActivity);
+        finish();
+
+    }
 }

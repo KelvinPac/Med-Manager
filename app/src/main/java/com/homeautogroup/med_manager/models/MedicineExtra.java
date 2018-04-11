@@ -15,6 +15,7 @@ public class MedicineExtra {
     @Exclude
     public String uniqueFirebaseId;
 
+    @SuppressWarnings("unchecked")
     public <T extends MedicineExtra> T withUniqueId(@NonNull final String uniqueId){
         this.uniqueFirebaseId = uniqueId;
         return (T) this;

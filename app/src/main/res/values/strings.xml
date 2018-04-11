@@ -10,11 +10,9 @@
 
     <!-- Edit Alarm Activity/Fragment -->
     <string name="time">Time</string>
-    <string name="label">Label</string>
     <string name="days">Days</string>
-    <string name="edit_alarm">Edit Alarm</string>
-    <string name="add_alarm">Add Alarm</string>
-    <string name="add_label_hint">Add a label!</string>
+    <string name="edit_alarm">Edit Medicine Reminder</string>
+    <string name="add_alarm">Add Medicine Reminder</string>
     <string name="update_complete">Changes Saved</string>
     <string name="update_failed">Update Failed</string>
     <string name="delete_complete">Alarm Deleted</string>

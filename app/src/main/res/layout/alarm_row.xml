@@ -9,6 +9,7 @@
     android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
+    android:focusable="true"
     android:paddingStart="@dimen/activity_horizontal_margin">
 
     <TextView
@@ -43,7 +44,8 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_toEndOf="@+id/ar_am_pm"
         android:layout_toRightOf="@+id/ar_am_pm"
-        android:src="@drawable/ic_repeat_black_24dp" />
+        android:src="@drawable/ic_repeat_black_24dp"
+        tools:ignore="ContentDescription" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,6 +82,7 @@
         android:layout_centerVertical="true"
         android:padding="12dp"
         android:src="@drawable/ic_alarm_white_24dp"
-        android:tint="@color/accent" />
+        android:tint="@color/accent"
+        tools:ignore="ContentDescription" />
 
 </RelativeLayout>

@@ -21,8 +21,8 @@ public final class AlarmLandingPageFragment extends Fragment implements View.OnC
 
         final View v = inflater.inflate(R.layout.fragment_alarm_landing_page, container, false);
 
-        final Button launchMainActivityBtn = (Button) v.findViewById(R.id.load_main_activity_btn);
-        final Button dismiss = (Button) v.findViewById(R.id.dismiss_btn);
+        final Button launchMainActivityBtn = v.findViewById(R.id.load_main_activity_btn);
+        final Button dismiss = v.findViewById(R.id.dismiss_btn);
 
         launchMainActivityBtn.setOnClickListener(this);
         dismiss.setOnClickListener(this);

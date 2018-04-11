@@ -16,7 +16,8 @@
             android:id="@+id/input_medicine_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Name" />
+            android:hint="Medicine Name"
+            tools:ignore="HardcodedText" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -27,7 +28,8 @@
             android:id="@+id/input_medicine_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Medicine Description" />
+            android:hint="Medicine Description"
+            tools:ignore="HardcodedText" />
     </android.support.design.widget.TextInputLayout>
 
 
@@ -42,7 +44,8 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Date" />
+            android:text="Start Date"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:onClick="saveEndDate"
@@ -50,7 +53,8 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="End Date" />
+            android:text="End Date"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,23 +68,27 @@
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Date Not Selected"/>
+            android:text="Start Date Not Selected"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/end_date_textview"
             android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="End Date Not Selected"/>
+            android:text="End Date Not Selected"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
 
     <Button
+        android:background="@drawable/button_bg"
+        android:text="Save Medicine"
         android:onClick="saveMedicine"
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save Medicine" />
+        android:textColor="@android:color/white"
+        tools:ignore="HardcodedText" />
 
 </LinearLayout>

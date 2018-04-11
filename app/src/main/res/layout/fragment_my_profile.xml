@@ -5,107 +5,147 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:orientation="vertical"
     tools:context=".fragments.MyProfileFragment">
 
-    <android.support.v7.widget.CardView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardCornerRadius="3dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_margin="10dp"
+                <ImageView
                     android:id="@+id/circleImageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/default_avatar" />
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp"
+                    android:src="@drawable/default_avatar"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
+                    android:layout_margin="6dp"
+                    android:text="Name: Kelvin Murithi"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:id="@+id/text_view_user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/circleImageView"
-                    android:layout_centerHorizontal="true"
-                    android:text="Name: Kelvin Murithi" />
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
+                    android:layout_margin="6dp"
+                    android:text="Email: Flyboypac@gmailcom"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold"
                     android:id="@+id/text_view_user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignStart="@+id/text_view_user_name"
-                    android:layout_centerVertical="true"
-                    android:text="Email: Flyboypac@gmailcom"
-                    android:layout_alignLeft="@+id/text_view_user_name" />
-            </RelativeLayout>
+                    tools:ignore="HardcodedText" />
 
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/list_padding_vertical_small"
+                    android:background="@drawable/divider" />
 
-                <TextView
-                    android:id="@+id/text_view_user_age"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Age: 30 Years" />
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/text_view_user_sex"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/text_view_user_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Age: 30 Years"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/text_view_user_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sex: Male"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/list_padding_vertical_small"
+                    android:background="@drawable/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sex: Male" />
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_view_user_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Weight: 55Kg"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:id="@+id/text_view_user_bmi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="BMI: 40"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="@dimen/list_padding_vertical_small"
+                    android:background="@drawable/divider" />
+
+                <Button
+                    android:id="@+id/btn_add_medicines"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/button_bg"
+                    android:text="Add My Medicines"
+                    android:textColor="@android:color/white"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_view_medicines"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/button_bg"
+                    android:text="View My Medicines"
+                    android:textColor="@android:color/white"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        </android.support.v7.widget.CardView>
 
-                <TextView
-                    android:id="@+id/text_view_user_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Weight: 55Kg" />
-
-                <TextView
-                    android:layout_weight="1"
-                    android:id="@+id/text_view_user_bmi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BMI: 40" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_add_medicines"
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add My Medicines"/>
-
-            <Button
-                android:id="@+id/btn_view_medicines"
-                android:layout_marginBottom="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="View My Medicines"/>
-        </LinearLayout>
-
-
-    </android.support.v7.widget.CardView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>
