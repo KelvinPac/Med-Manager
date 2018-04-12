@@ -1,4 +1,1 @@
-# Med-Manager
-[![Build Status](https://travis-ci.org/KelvinPac/Med-Manager.svg?branch=master)](https://travis-ci.org/KelvinPac/Med-Manager)
-
-[![CircleCI](https://circleci.com/gh/KelvinPac/Med-Manager/tree/master.svg?style=svg)](https://circleci.com/gh/KelvinPac/Med-Manager/tree/master)
+# Andela Med-Manager  [![CircleCI](https://circleci.com/gh/KelvinPac/Med-Manager/tree/master.svg?style=shield)](https://circleci.com/gh/KelvinPac/Med-Manager/tree/master)   [![Maintainability](https://api.codeclimate.com/v1/badges/029ded8e7747a58f1095/maintainability)](https://codeclimate.com/github/jumaallan/Andela-Med-Manager/maintainability)  [![Test Coverage](https://api.codeclimate.com/v1/badges/029ded8e7747a58f1095/test_coverage)](https://codeclimate.com/github/jumaallan/Andela-Med-Manager/test_coverage)
