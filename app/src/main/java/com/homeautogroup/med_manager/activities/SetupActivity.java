@@ -65,7 +65,7 @@ public class SetupActivity extends AppCompatActivity {
 
     //EditTexts
     //private TextInputLayout mInputLayoutAge,mInputLayoutWeight;
-    private TextInputEditText mInputAge,mInputWeight,mSetupNameField;
+    private TextInputEditText mInputAge,mInputWeight,mSetupNameField,mInputHeight;
 
     private RadioGroup radioGroup;
     private RadioButton maleRadioButton,femaleRadioButton;
@@ -92,7 +92,7 @@ public class SetupActivity extends AppCompatActivity {
         mSetupNameField = findViewById(R.id.setupNameField);
 
         // mInputLayoutAge = findViewById(R.id.input_layout_age);
-        // mInputLayoutWeight = findViewById(R.id.input_layout_weight);
+        mInputHeight = findViewById(R.id.input_editText_height);
         mInputAge = findViewById(R.id.input_editText_age);
         mInputWeight = findViewById(R.id.input_editText_weight);
         radioGroup = findViewById(R.id.radio_group_sex);
@@ -152,6 +152,7 @@ public class SetupActivity extends AppCompatActivity {
                     mInputAge.setText(String.valueOf(user.getUserAge()));
                     mInputWeight.setText(String.valueOf(user.getUserWeight()));
                     mImageUri = Uri.parse(user.getProfileImage());
+                    mInputHeight.setText(String.valueOf(user.getUserHeight()));
                     radioGroup.clearCheck();
                     if (user.getUserSex().equals("Male")){
                         maleRadioButton.setChecked(true);
@@ -181,9 +182,10 @@ public class SetupActivity extends AppCompatActivity {
         final String user_id = mCurrentUser.getUid();
         final int userAge = Integer.valueOf(mInputAge.getText().toString().trim());
         final int userWeight = Integer.valueOf(mInputWeight.getText().toString().trim());
+        final int userHeight = Integer.valueOf(mInputHeight.getText().toString().trim());
 
-        if (userAge <=0 || userWeight <=0){
-            Toast.makeText(this, "Age or weight is invalid", Toast.LENGTH_SHORT).show();
+        if (userAge <=0 || userWeight <=0 || userHeight <=0){
+            Toast.makeText(this, "Age, weight or height is invalid", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -215,7 +217,7 @@ public class SetupActivity extends AppCompatActivity {
                             userSex = "Female";
                         }
 
-                        User user = new User(name,downloadUrl,userAge,userWeight,userSex);
+                        User user = new User(name,downloadUrl,userAge,userWeight,userSex,userHeight);
                         // mDatabaseUsers.child(user_id).child("name").setValue(name);
                         //mDatabaseUsers.child(user_id).child("image").setValue(downloadUrl);
                         mDatabaseUsers.child(user_id).setValue(user);
@@ -244,7 +246,7 @@ public class SetupActivity extends AppCompatActivity {
                     userSex = "Female";
                 }
 
-                User user = new User(name,mImageUri.toString(),userAge,userWeight,userSex);
+                User user = new User(name,mImageUri.toString(),userAge,userWeight,userSex,userHeight);
                 mDatabaseUsers.child(user_id).setValue(user);
                 finish();
             }

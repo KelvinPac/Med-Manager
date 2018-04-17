@@ -18,17 +18,19 @@ public class User {
     private int userAge;
     private int userWeight;
     private String userSex;
+    private int userHeight;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String userName, String profileImage, int userAge, int userWeight, String userSex) {
+    public User(String userName, String profileImage, int userAge, int userWeight, String userSex, int userHeight) {
         this.userName = userName;
         this.profileImage = profileImage;
         this.userAge = userAge;
         this.userWeight = userWeight;
         this.userSex = userSex;
+        this.userHeight = userHeight;
     }
 
     public String getUserName() {
@@ -69,5 +71,13 @@ public class User {
 
     public void setUserSex(String userSex) {
         this.userSex = userSex;
+    }
+
+    public int getUserHeight() {
+        return userHeight;
+    }
+
+    public void setUserHeight(int userHeight) {
+        this.userHeight = userHeight;
     }
 }

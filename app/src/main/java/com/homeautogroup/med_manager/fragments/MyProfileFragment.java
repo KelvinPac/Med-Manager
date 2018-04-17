@@ -24,7 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.homeautogroup.med_manager.R;
 import com.homeautogroup.med_manager.activities.AddMedicine;
+import com.homeautogroup.med_manager.activities.HomeActivityMain;
 import com.homeautogroup.med_manager.activities.MyMedicines;
+import com.homeautogroup.med_manager.activities.SetupActivity;
 import com.homeautogroup.med_manager.models.User;
 import com.homeautogroup.med_manager.utils.GlideApp;
 
@@ -65,6 +67,7 @@ public class MyProfileFragment extends Fragment {
         userWeight = view.findViewById(R.id.text_view_user_weight);
         Button btnAddMedicines = view.findViewById(R.id.btn_add_medicines);
         Button btnViewMyMedicines = view.findViewById(R.id.btn_view_medicines);
+        Button btnEditMyAccount = view.findViewById(R.id.btn_edit_my_account);
 
 
         btnAddMedicines.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +82,15 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(mContext, MyMedicines.class));
+            }
+        });
+
+        btnEditMyAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext,SetupActivity.class);
+                intent.setAction(SetupActivity.START_ACTION_UPDATE);
+                startActivity(intent);
             }
         });
         loadUserProfile();

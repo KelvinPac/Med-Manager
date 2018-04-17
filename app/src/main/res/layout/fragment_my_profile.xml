@@ -126,6 +126,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/button_bg"
                     android:text="Add My Medicines"
                     android:textColor="@android:color/white"
@@ -136,8 +138,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:background="@drawable/button_bg"
                     android:text="View My Medicines"
+                    android:textColor="@android:color/white"
+                    tools:ignore="HardcodedText" />
+
+                <Button
+                    android:id="@+id/btn_edit_my_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@drawable/button_bg"
+                    android:text="Update my account"
                     android:textColor="@android:color/white"
                     tools:ignore="HardcodedText" />
             </LinearLayout>

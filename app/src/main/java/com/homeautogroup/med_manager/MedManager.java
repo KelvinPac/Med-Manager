@@ -18,6 +18,7 @@ public class MedManager extends Application{
     public void onCreate() {
         super.onCreate();
 
+        //enable firebase offline persistence
         if (!FirebaseApp.getApps(this).isEmpty()){
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         }

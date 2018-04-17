@@ -83,11 +83,11 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/input_editText_height"
-                android:inputType="number"
-                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Height (CM)"
+                android:inputType="number"
+                android:maxLines="1"
                 tools:ignore="HardcodedText" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>

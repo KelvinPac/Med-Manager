@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.homeautogroup.med_manager.models.Medicine;
 
 public class AddMedicine extends AppCompatActivity implements DatePickerFragment.OnDateInteractionListener{
 
-    private TextInputEditText mInputMedName,mInputMedDescription;
+    private EditText mInputMedName,mInputMedDescription;
     private String startDate,endDate,medicine_name,medicine_description;
     private TextView mStartDateTextView,mEndDateTextView;
 
