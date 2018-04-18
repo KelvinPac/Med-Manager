@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-31.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-19.png" width="350"/>
+  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-53-23.png" width="350"/>
 </p>
 
 
