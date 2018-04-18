@@ -19,8 +19,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -69,6 +71,8 @@ public class SetupActivity extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private RadioButton maleRadioButton,femaleRadioButton;
+    private String mUserName, mUserId, mUserSex;
+    private int mUserAge, mUserWeight, mUserHeight;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -178,82 +182,92 @@ public class SetupActivity extends AppCompatActivity {
     }
     private void startAccountSetup() {
 
-        final String name = mSetupNameField.getText().toString().trim();
-        final String user_id = mCurrentUser.getUid();
-        final int userAge = Integer.valueOf(mInputAge.getText().toString().trim());
-        final int userWeight = Integer.valueOf(mInputWeight.getText().toString().trim());
-        final int userHeight = Integer.valueOf(mInputHeight.getText().toString().trim());
+        mUserName = mSetupNameField.getText().toString().trim();
+        mUserId = mCurrentUser.getUid();
+        mUserAge = Integer.valueOf(mInputAge.getText().toString().trim());
+        mUserWeight = Integer.valueOf(mInputWeight.getText().toString().trim());
+        mUserHeight = Integer.valueOf(mInputHeight.getText().toString().trim());
 
-        if (userAge <=0 || userWeight <=0 || userHeight <=0){
+        if (mUserAge <= 0 || mUserWeight <= 0 || mUserHeight <= 0) {
             Toast.makeText(this, "Age, weight or height is invalid", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (mImageUri==null){
             Toast.makeText(this, "Profile image not set", Toast.LENGTH_SHORT).show();
+            return;
         }
 
+        int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+        if (checkedRadioButtonId == R.id.radioButtonMale) {
+            mUserSex = "Male";
+        } else if (checkedRadioButtonId == R.id.radioButtonFemale) {
+            mUserSex = "Female";
+        } else {
+            Toast.makeText(this, "Please select user gender", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        if (!TextUtils.isEmpty(name) && mImageUri !=null){
+        if (!TextUtils.isEmpty(mUserName) && mImageUri != null) {
 
+            showProgressDialog("Finishing Setup...");
+
+            //profile picture was changed so upload new one then update user details
             if (isProfilePicChanged){
-
-                mProgress.setMessage("Finishing Setup...");
-                mProgress.setCanceledOnTouchOutside(false);
-                mProgress.show();
-
-                StorageReference filepath = mStorageImage.child(user_id+".jpg");
+                StorageReference filepath = mStorageImage.child(mUserId + ".jpg");
                 filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        String downloadUrl = taskSnapshot.getDownloadUrl().toString();
-
-                        String userSex;
-                        int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-                        if (checkedRadioButtonId == R.id.radioButtonMale){
-                            userSex = "Male";
-                        }else {
-                            userSex = "Female";
-                        }
-
-                        User user = new User(name,downloadUrl,userAge,userWeight,userSex,userHeight);
-                        // mDatabaseUsers.child(user_id).child("name").setValue(name);
-                        //mDatabaseUsers.child(user_id).child("image").setValue(downloadUrl);
-                        mDatabaseUsers.child(user_id).setValue(user);
-
-                        mProgress.dismiss();
-                        Intent main = new Intent(SetupActivity.this, SignInActivity.class);
-                        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                        finish();
-
+                        //profile image uploaded successfully
+                        String downloadUrl = taskSnapshot.getDownloadUrl().toString();  //get download url
+                        updateUserProfileInDb(downloadUrl); //update user profile
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        //profile image failed to upload
                         mProgress.cancel();
                         Toast.makeText(SetupActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-            }else {
-
-                String userSex;
-                int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-                if (checkedRadioButtonId == R.id.radioButtonMale){
-                    userSex = "Male";
-                }else {
-                    userSex = "Female";
-                }
-
-                User user = new User(name,mImageUri.toString(),userAge,userWeight,userSex,userHeight);
-                mDatabaseUsers.child(user_id).setValue(user);
-                finish();
+            }
+            //user did not update profile image. update other data only
+            else {
+                User user = new User(mUserName, mImageUri.toString(), mUserAge, mUserWeight,
+                        mUserSex, mUserHeight);
+                //add onComplete listener
+                mDatabaseUsers.child(mUserId).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        mProgress.dismiss();
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(SetupActivity.this, HomeActivityMain.class));
+                            Toast.makeText(SetupActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(SetupActivity.this, "Error updating profile. try again later", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
 
-
-
         }
+    }
+
+    private void updateUserProfileInDb(String downloadUrl) {
+        User user = new User(mUserName, downloadUrl, mUserAge, mUserWeight, mUserSex, mUserHeight);
+        //add onComplete listener
+        mDatabaseUsers.child(mUserId).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                mProgress.dismiss();
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(SetupActivity.this, HomeActivityMain.class));
+                    Toast.makeText(SetupActivity.this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(SetupActivity.this, "Error updating profile. try again later", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 
@@ -293,6 +307,12 @@ public class SetupActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+
+    private void showProgressDialog(String message) {
+        mProgress.setMessage(message);
+        mProgress.setCanceledOnTouchOutside(false);
+        mProgress.show();
     }
 
     /**

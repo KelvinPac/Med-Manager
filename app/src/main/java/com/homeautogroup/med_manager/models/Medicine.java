@@ -14,14 +14,16 @@ public class Medicine extends MedicineExtra {
     private String endDate;
     private int intakeMonth;
     private int intakeYear;
+    private int selectedIcon;
 
-    public Medicine(String medicineName, String medicineDesc, String startDate, String endDate,int intakeMonth,int intakeYear) {
+    public Medicine(String medicineName, String medicineDesc, String startDate, String endDate, int intakeMonth, int intakeYear, int selectedIcon) {
         this.medicineName = medicineName;
         this.medicineDesc = medicineDesc;
         this.startDate = startDate;
         this.endDate = endDate;
         this.intakeMonth = intakeMonth;
         this.intakeYear = intakeYear;
+        this.selectedIcon = selectedIcon;
     }
 
     public Medicine() {
@@ -73,5 +75,13 @@ public class Medicine extends MedicineExtra {
 
     public void setIntakeYear(int intakeYear) {
         this.intakeYear = intakeYear;
+    }
+
+    public int getSelectedIcon() {
+        return selectedIcon;
+    }
+
+    public void setSelectedIcon(int selectedIcon) {
+        this.selectedIcon = selectedIcon;
     }
 }

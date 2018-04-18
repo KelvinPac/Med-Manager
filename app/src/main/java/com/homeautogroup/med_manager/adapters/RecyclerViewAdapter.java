@@ -1,5 +1,6 @@
 package com.homeautogroup.med_manager.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -22,11 +23,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private ArrayList<Medicine> modelList;
 
-    private OnItemClickListener mItemClickListener;
+    // private OnItemClickListener mItemClickListener;
 
 
     public RecyclerViewAdapter(Context context, ArrayList<Medicine> modelList) {
-        Context mContext = context;
         this.modelList = modelList;
     }
 
@@ -45,8 +45,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
         //Here you can fill your row view
         if (holder instanceof ViewHolder) {
@@ -56,8 +57,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             genericViewHolder.itemTxtTitle.setText(model.getMedicineName());
             genericViewHolder.itemTxtMessage.setText(model.getMedicineDesc());
             genericViewHolder.itemView.setTag(model.uniqueFirebaseId);
-
-
+            genericViewHolder.imgUser.setImageResource(model.getSelectedIcon());
+            genericViewHolder.itemTextStartDate.setText("Start date: " + model.getStartDate());
+            genericViewHolder.itemTextEndDate.setText("Finish date: " + model.getEndDate());
         }
     }
 
@@ -68,54 +70,45 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return modelList.size();
     }
 
-    public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
+    /*public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
         this.mItemClickListener = mItemClickListener;
-    }
+    }*/
 
     private Medicine getItem(int position) {
         return modelList.get(position);
     }
 
-
+/*
     public interface OnItemClickListener {
         void onItemClick(View view, int position, Medicine model);
-    }
+    }*/
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imgUser;
         private TextView itemTxtTitle;
         private TextView itemTxtMessage;
+        private TextView itemTextStartDate, itemTextEndDate;
 
 
-        // @BindView(R.id.img_user)
-        // ImageView imgUser;
-        // @BindView(R.id.item_txt_title)
-        // TextView itemTxtTitle;
-        // @BindView(R.id.item_txt_message)
-        // TextView itemTxtMessage;
-        // @BindView(R.id.radio_list)
-        // RadioButton itemTxtMessage;
-        // @BindView(R.id.check_list)
-        // CheckBox itemCheckList;
-        public ViewHolder(final View itemView) {
+        ViewHolder(final View itemView) {
             super(itemView);
-
-            // ButterKnife.bind(this, itemView);
 
             this.imgUser = itemView.findViewById(R.id.img_user);
             this.itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
             this.itemTxtMessage = itemView.findViewById(R.id.item_txt_message);
+            this.itemTextStartDate = itemView.findViewById(R.id.item_txt_start_date);
+            this.itemTextEndDate = itemView.findViewById(R.id.item_txt_end_date);
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+           /* itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition()));
 
 
                 }
-            });
+            });*/
 
         }
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -108,6 +109,88 @@
         android:layout_height="1dp"
         android:layout_marginBottom="@dimen/list_padding_vertical_small"
         android:background="@drawable/divider" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medicine Icon"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/imageViewMedicineIcon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:contentDescription="Medicine Icon"
+        app:srcCompat="@drawable/ic_capsule"
+        tools:ignore="HardcodedText" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgBtnCapsule"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_capsule"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/imgBtnDrops"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_drops"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/imgBtnInhaler"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_inhalator"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/imgBtnTablet"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_medicine_tablet"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/imgBtnSyringe"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_medicine_syringe"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/imgBtnBottle"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:onClick="onClick"
+                app:srcCompat="@drawable/ic_medicine_bottle"
+                tools:ignore="ContentDescription" />
+
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
 
     <Button
         android:layout_marginTop="10dp"

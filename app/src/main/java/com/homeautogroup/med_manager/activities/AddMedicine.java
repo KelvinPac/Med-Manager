@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,15 +23,17 @@ import com.homeautogroup.med_manager.R;
 import com.homeautogroup.med_manager.fragments.DatePickerFragment;
 import com.homeautogroup.med_manager.models.Medicine;
 
-public class AddMedicine extends AppCompatActivity implements DatePickerFragment.OnDateInteractionListener{
+public class AddMedicine extends AppCompatActivity
+        implements DatePickerFragment.OnDateInteractionListener, View.OnClickListener {
 
     private EditText mInputMedName,mInputMedDescription;
     private String startDate,endDate,medicine_name,medicine_description;
     private TextView mStartDateTextView,mEndDateTextView;
+    private ImageView medicineIcon;
 
-    private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     String userUID;
+    private int selectedMedicineIcon;
 
 
     @Override
@@ -51,6 +53,7 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
         mInputMedDescription = findViewById(R.id.input_medicine_description);
         mStartDateTextView = findViewById(R.id.start_date_textview);
         mEndDateTextView = findViewById(R.id.end_date_textview);
+        medicineIcon = findViewById(R.id.imageViewMedicineIcon);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser mCurrentUser = mAuth.getCurrentUser();
@@ -59,10 +62,11 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
         if (mCurrentUser == null){
             goToSignInActivity();
         }else {
-           userUID = mCurrentUser.getUid();
+            userUID = mCurrentUser.getUid();
         }
-
     }
+
+
 
     private void showDatePicker(String startKey) {
         DialogFragment newFragment = new DatePickerFragment();
@@ -88,6 +92,8 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
             Toast.makeText(this, "Please select start and end date", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(medicine_name) || TextUtils.isEmpty(medicine_description)){
             Toast.makeText(this, "Please add medicine name and medicine description", Toast.LENGTH_SHORT).show();
+        } else if (selectedMedicineIcon == 0) {
+            Toast.makeText(this, "Please select an image icon", Toast.LENGTH_SHORT).show();
         }else {
             saveMedicineToDb();
         }
@@ -101,8 +107,13 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
 
         DatabaseReference newMedicineRef = myMedsRef.push();
 
-        Medicine medicine = new Medicine(medicine_name,medicine_description,
-                startDate,endDate,getMonth(),getYear());
+        Medicine medicine = new Medicine(
+                medicine_name,
+                medicine_description,
+                startDate, endDate,
+                getMonth(),
+                getYear(),
+                selectedMedicineIcon);
         newMedicineRef.setValue(medicine).addOnSuccessListener(this,new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -149,4 +160,41 @@ public class AddMedicine extends AppCompatActivity implements DatePickerFragment
     }
 
 
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.imgBtnCapsule:
+                medicineIcon.setImageResource(R.drawable.ic_capsule);
+                // selectedMedicineIcon = 1;
+                selectedMedicineIcon = R.drawable.ic_capsule;
+                break;
+            case R.id.imgBtnDrops:
+                medicineIcon.setImageResource(R.drawable.ic_drops);
+                // selectedMedicineIcon =2;
+                selectedMedicineIcon = R.drawable.ic_drops;
+                break;
+            case R.id.imgBtnInhaler:
+                medicineIcon.setImageResource(R.drawable.ic_inhalator);
+                //selectedMedicineIcon =3;
+                selectedMedicineIcon = R.drawable.ic_inhalator;
+                break;
+            case R.id.imgBtnTablet:
+                medicineIcon.setImageResource(R.drawable.ic_medicine_tablet);
+                // selectedMedicineIcon =4;
+                selectedMedicineIcon = R.drawable.ic_medicine_tablet;
+                break;
+            case R.id.imgBtnSyringe:
+                medicineIcon.setImageResource(R.drawable.ic_medicine_syringe);
+                //selectedMedicineIcon = 5;
+                selectedMedicineIcon = R.drawable.ic_medicine_syringe;
+                break;
+            case R.id.imgBtnBottle:
+                medicineIcon.setImageResource(R.drawable.ic_medicine_bottle);
+                selectedMedicineIcon = R.drawable.ic_medicine_bottle;
+                //selectedMedicineIcon = 6;
+                break;
+            default:
+        }
+    }
 }

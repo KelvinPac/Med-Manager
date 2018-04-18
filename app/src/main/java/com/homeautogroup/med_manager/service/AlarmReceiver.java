@@ -48,6 +48,7 @@ public final class AlarmReceiver extends BroadcastReceiver {
         );
         final AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
+        assert am != null;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             am.set(AlarmManager.RTC_WAKEUP, alarm.getTime(), pIntent);
         } else {
@@ -166,6 +167,7 @@ public final class AlarmReceiver extends BroadcastReceiver {
         builder.setAutoCancel(true);
         builder.setPriority(Notification.PRIORITY_HIGH);
 
+        assert manager != null;
         manager.notify(id, builder.build());
 
         //Reset Alarm manually

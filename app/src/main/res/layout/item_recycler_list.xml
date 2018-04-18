@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginBottom="3dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="3dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="2dp"
     android:orientation="horizontal"
     app:cardUseCompatPadding="true">
 
@@ -25,7 +25,6 @@
             android:id="@+id/img_user"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="#16000000"
             tools:ignore="ContentDescription" />
 
         <LinearLayout
@@ -56,6 +55,26 @@
                 android:text=""
                 android:textColor="#727272"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/item_txt_start_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#727272"
+                android:textSize="10sp"
+                tools:ignore="HardcodedText"
+                tools:text="Start date: " />
+
+            <TextView
+                android:id="@+id/item_txt_end_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="#727272"
+                android:textSize="10sp"
+                tools:text="End date: " />
 
 
         </LinearLayout>

@@ -18,6 +18,7 @@ import android.text.Spanned;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -57,13 +58,13 @@ public class MyMedicines extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance();
 
-        // ButterKnife.bind(this);
         findViews();
         initToolbar("My Medicines");
         //setAdapter();
 
         fetchMyMedicinesFromDb();
 
+        Toast.makeText(this, "swipe card left or right to delete medicine", Toast.LENGTH_SHORT).show();
     }
 
     private void findViews() {
@@ -169,7 +170,6 @@ public class MyMedicines extends AppCompatActivity {
         myMeds.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                // Toast.makeText(MyMedicines.this, dataSnapshot.getKey(), Toast.LENGTH_SHORT).show();
                 Medicine medicine = dataSnapshot.getValue(Medicine.class).withUniqueId(dataSnapshot.getKey());
                 modelList.add(medicine);
                 mAdapter.notifyDataSetChanged();

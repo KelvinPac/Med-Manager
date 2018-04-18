@@ -220,6 +220,7 @@ public final class AddEditAlarmFragment extends Fragment {
         alarm.setDay(Alarm.SUN, mSun.isChecked());
 
         final int rowsUpdated = DatabaseHelper.getInstance(getContext()).updateAlarm(alarm);
+
         final int messageId = (rowsUpdated == 1) ? R.string.update_complete : R.string.update_failed;
 
         Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
@@ -241,21 +242,7 @@ public final class AddEditAlarmFragment extends Fragment {
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
-                //Cancel any pending notifications for this alarm
-                AlarmReceiver.cancelReminderAlarm(getContext(), alarm);
-
-                final int rowsDeleted = DatabaseHelper.getInstance(getContext()).deleteAlarm(alarm);
-                int messageId;
-                if (rowsDeleted == 1) {
-                    messageId = R.string.delete_complete;
-                    Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
-                    LoadAlarmsService.launchLoadAlarmsService(getContext());
-                    getActivity().finish();
-                } else {
-                    messageId = R.string.delete_failed;
-                    Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
-                }
+                finalizeDeleteAlarm(alarm);
             }
         });
         builder.setNegativeButton(R.string.no, null);
@@ -263,4 +250,31 @@ public final class AddEditAlarmFragment extends Fragment {
 
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        final Alarm alarm = getAlarm();
+        if (TextUtils.isEmpty(alarm.getLabel())) {
+            //delete this alarm
+            finalizeDeleteAlarm(alarm);
+        }
+    }
+
+
+    private void finalizeDeleteAlarm(Alarm alarm) {
+        //Cancel any pending notifications for this alarm
+        AlarmReceiver.cancelReminderAlarm(getContext(), alarm);
+
+        final int rowsDeleted = DatabaseHelper.getInstance(getContext()).deleteAlarm(alarm);
+        int messageId;
+        if (rowsDeleted == 1) {
+            messageId = R.string.delete_complete;
+            Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
+            LoadAlarmsService.launchLoadAlarmsService(getContext());
+            getActivity().finish();
+        } else {
+            messageId = R.string.delete_failed;
+            Toast.makeText(getContext(), messageId, Toast.LENGTH_SHORT).show();
+        }
+    }
 }
