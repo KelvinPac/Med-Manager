@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-29.png" width="350"/>
-  <img src="https://github.com/KelvinPac/CryptoCurrencyConverter/blob/master/screen_shots/device-2017-11-04-172551.png" width="350"/>
+  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-15-07.png" width="350"/>
 </p>
 
 
