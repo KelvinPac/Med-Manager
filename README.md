@@ -18,11 +18,10 @@
   <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-04.png" width="350"/>
   <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02.png" width="350"/>
 </p>
-===========
-==month view and result
+
 <p align="center">
   <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-53-20.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02p/.png" width="350"/>
+  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-54-01.png" width="350"/>
 </p>
 
 ==add alarm
