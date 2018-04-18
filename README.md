@@ -2,35 +2,15 @@
 
 ## Andela learning community take a climp challenge
 
-<p align="center">
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-29.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-15-07.png" width="350"/>
-</p>
+<img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-29.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-15-07.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-31.png" width="280"/>
 
-
-<p align="center">
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-31.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-53-23.png" width="350"/>
-</p>
 
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-04.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-53-20.png" width="280"/>
 
-<p align="center">
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-54-01.png" width="350"/>
-</p>
 
-==add alarm
-<p align="center">
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-57-26.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02p/.png" width="350"/>
-</p>
+<img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-54-01.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-57-26.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-14.png" width="280"/>
 
-==my meds
-<p align="center">
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-14.png" width="350"/>
-  <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-28.png" width="350"/>
-</p>
-
+<img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-28.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-53-23.png" width="280"/> 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
 
