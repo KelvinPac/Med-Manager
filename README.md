@@ -3,7 +3,7 @@
 ## Andela learning community take a climp challenge
 
 ### Login Page
-The User can login or create an account using email and passwor or google login. User will then update profile after account creation
+The User can login or create an account using email and password or google login. User will then update profile after account creation
 
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-29.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-15-07.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-31.png" width="280"/>
 
@@ -20,6 +20,5 @@ From the app main dashboard users can
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-54-01.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-57-26.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-14.png" width="280"/>
 
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-55-28.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-53-23.png" width="280"/> 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes
+
 
