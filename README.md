@@ -14,7 +14,6 @@ From the app main dashboard users can
 * See their Monthly Intake
 * Add reminders for medicine
 
-This is how the Dashboard looks like (In Empty State - No Meds Added Yet):
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-04.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-53-20.png" width="280"/>
 
 
