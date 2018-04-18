@@ -2,9 +2,19 @@
 
 ## Andela learning community take a climp challenge
 
+### Login Page
+The User can login or create an account using email and passwor or google login. User will then update profile after account creation
+
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-29.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-05-15-07.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-03-46-31.png" width="280"/>
 
+### Main Dashboard 
+From the app main dashboard users can
+* Add New Medicine
+* Update account
+* See their Monthly Intake
+* Add reminders for medicine
 
+This is how the Dashboard looks like (In Empty State - No Meds Added Yet):
 <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-56-04.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-04-58-02.png" width="280"/> <img src="https://github.com/KelvinPac/Med-Manager/blob/master/Screenshots/Screenshot_2018-04-18-02-53-20.png" width="280"/>
 
 
